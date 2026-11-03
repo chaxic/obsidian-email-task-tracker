@@ -1,0 +1,234 @@
+/* Email Task Tracker: uses Obsidian theme variables so light and dark both work. */
+.ett-dashboard { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+.ett-muted { color: var(--text-muted); font-size: var(--font-ui-smaller); }
+.ett-note { margin-bottom: 12px; }
+.ett-empty { color: var(--text-muted); padding: 24px 0; text-align: center; }
+
+.ett-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.ett-header h2 { margin: 0; }
+.ett-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ett-actions button { display: inline-flex; align-items: center; gap: 6px; }
+.ett-actions button svg { width: 16px; height: 16px; }
+
+.ett-drop {
+	display: flex; align-items: center; gap: 12px; padding: 16px;
+	border: 2px dashed var(--background-modifier-border); border-radius: var(--radius-m);
+	cursor: pointer; transition: border-color 120ms, background-color 120ms;
+}
+.ett-drop:hover, .ett-drop.is-over { border-color: var(--interactive-accent); background: var(--background-secondary); }
+.ett-drop-icon svg { width: 28px; height: 28px; color: var(--text-muted); }
+.ett-drop-title { font-weight: var(--font-semibold); }
+
+.ett-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.ett-kpi { padding: 12px 14px; border-radius: var(--radius-m); background: var(--background-secondary); }
+.ett-kpi.is-link { cursor: pointer; }
+.ett-kpi.is-link:hover { background: var(--background-modifier-hover); }
+.ett-kpi-value { font-size: 1.6em; font-weight: var(--font-bold); font-variant-numeric: tabular-nums; color: var(--text-normal); }
+.ett-kpi-label { color: var(--text-muted); font-size: var(--font-ui-smaller); }
+
+.ett-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.ett-filter { display: flex; flex-direction: column; gap: 4px; font-size: var(--font-ui-smaller); color: var(--text-muted); }
+.ett-search { flex: 1; min-width: 180px; }
+.ett-search input { width: 100%; }
+
+
+
+.ett-card { padding: 14px; border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m); min-width: 0; }
+.ett-card-title { font-weight: var(--font-semibold); margin-bottom: 10px; }
+
+.ett-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 8px; font-size: var(--font-ui-smaller); color: var(--text-muted); }
+.ett-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.ett-swatch {
+	display: inline-block; width: 10px; height: 10px; border-radius: 3px; flex: none; margin-right: 6px; vertical-align: middle;
+	background-color: var(--ett-swatch-color, transparent);
+}
+.ett-legend-item .ett-swatch, .ett-tooltip-row .ett-swatch { margin-right: 0; }
+
+.ett-chart { position: relative; }
+.ett-chart svg { display: block; overflow: visible; }
+.ett-chart svg.ett-heatmap { max-width: var(--ett-heatmap-width, none); }
+.ett-grid { stroke: var(--background-modifier-border); stroke-width: 1; opacity: 0.6; }
+.ett-axis { stroke: var(--background-modifier-border); stroke-width: 1; }
+.ett-tick { fill: var(--text-faint); font-size: 10px; font-variant-numeric: tabular-nums; }
+.ett-hit { fill: transparent; }
+.ett-hit.is-hover { fill: var(--background-modifier-hover); }
+.ett-tooltip {
+	position: absolute; top: 0; left: var(--ett-tooltip-left, 0); pointer-events: none; opacity: 0; transition: opacity 80ms;
+	background: var(--background-primary); border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s); padding: 6px 8px; font-size: var(--font-ui-smaller);
+	box-shadow: var(--shadow-s); min-width: 140px; z-index: 2;
+}
+.ett-tooltip.is-visible { opacity: 1; }
+.ett-tooltip-title { font-weight: var(--font-semibold); margin-bottom: 4px; color: var(--text-normal); }
+.ett-tooltip-row { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+.ett-tooltip-value { margin-left: auto; color: var(--text-normal); font-variant-numeric: tabular-nums; }
+
+.ett-tree { display: flex; flex-direction: column; }
+.ett-tree-row {
+	display: flex; align-items: center; padding: 4px 8px; border-radius: var(--radius-s); cursor: pointer;
+	padding-left: calc(8px + var(--ett-depth, 0) * 16px);
+}
+.ett-tree-row:hover { background: var(--background-modifier-hover); }
+.ett-tree-row.is-selected { background: var(--background-modifier-active-hover); }
+.ett-tree-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ett-tree-count { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+.ett-table-wrap { overflow-x: auto; }
+.ett-table { width: 100%; border-collapse: collapse; font-size: var(--font-ui-small); }
+.ett-table th { text-align: left; color: var(--text-muted); font-weight: var(--font-medium); padding: 6px 8px; border-bottom: 1px solid var(--background-modifier-border); }
+.ett-table td { padding: 4px 8px; border-bottom: 1px solid var(--background-modifier-border); vertical-align: middle; }
+.ett-nowrap { white-space: nowrap; }
+.ett-from { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ett-subject { min-width: 200px; }
+.ett-cat-select { max-width: 220px; }
+.ett-row-actions { white-space: nowrap; }
+.ett-row-actions button { padding: 4px; }
+.ett-more { margin-top: 10px; }
+
+.ett-modal { width: min(720px, 92vw); }
+.ett-source { padding: 10px 12px; border-radius: var(--radius-m); background: var(--background-secondary); margin-bottom: 12px; }
+.ett-source-subject { font-weight: var(--font-semibold); }
+.ett-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ett-chip { font-size: var(--font-ui-smaller); padding: 2px 10px; border-radius: 999px; height: auto; }
+.ett-chip.is-added { background: var(--interactive-accent); color: var(--text-on-accent); }
+.ett-toggle-label { margin: 0 12px 0 6px; font-size: var(--font-ui-smaller); color: var(--text-muted); }
+.ett-preview { margin-top: 12px; padding: 10px 12px; border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m); }
+.ett-preview-title { font-weight: var(--font-semibold); }
+.ett-preview ul { margin: 6px 0; padding-left: 20px; }
+.ett-cat-tree .setting-item-name { display: flex; align-items: center; }
+.ett-cat-tree .ett-setting-nested { padding-left: calc(var(--ett-depth, 0) * 24px); }
+
+/* ── Round 2: layout, panels, charts, management ───────────────────────── */
+.ett-layout { display: grid; grid-template-columns: minmax(200px, 260px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.ett-side { position: sticky; top: 0; }
+.ett-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+@media (max-width: 900px) { .ett-layout { grid-template-columns: 1fr; } .ett-side { position: static; } }
+
+.ett-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ett-panel.is-full { grid-column: 1 / -1; }
+@media (max-width: 700px) { .ett-panels { grid-template-columns: 1fr; } }
+.ett-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.ett-card-head .ett-card-title { margin-bottom: 0; }
+.ett-chart-note { margin-top: 6px; }
+
+.ett-tree-row { gap: 4px; }
+.ett-tree-tools { display: none; gap: 0; }
+.ett-tree-row:hover .ett-tree-tools { display: inline-flex; }
+.ett-tree-tools button { padding: 2px; height: auto; }
+.ett-tree-tools svg { width: 14px; height: 14px; }
+.ett-tree-hint { margin-top: 8px; }
+
+.ett-crosshair { stroke: var(--text-faint); stroke-width: 1; opacity: 0; }
+.ett-crosshair.is-visible { opacity: 0.6; }
+.ett-marker { stroke: var(--background-primary); stroke-width: 2; }
+
+.ett-rank { display: flex; flex-direction: column; gap: 6px; }
+.ett-rank-row { display: grid; grid-template-columns: minmax(80px, 30%) 1fr auto; align-items: center; gap: 10px; font-size: var(--font-ui-small); }
+.ett-rank-row.is-link { cursor: pointer; }
+.ett-rank-row.is-link:hover .ett-rank-label { text-decoration: underline; }
+.ett-rank-label { display: flex; align-items: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--text-normal); }
+.ett-rank-label span:last-child { overflow: hidden; text-overflow: ellipsis; }
+.ett-rank-track { height: 10px; display: flex; gap: 2px; }
+.ett-rank-bar {
+	height: 100%; border-radius: 0 4px 4px 0; min-width: 2px;
+	width: var(--ett-bar-width, 0); background-color: var(--ett-bar-color, var(--interactive-accent));
+}
+.ett-status-seg { height: 100%; min-width: 2px; }
+.ett-status-seg:last-child { border-radius: 0 4px 4px 0; }
+.ett-rank-value { color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: var(--font-ui-smaller); }
+
+.ett-donut-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.ett-donut { flex: none; }
+.ett-slice { stroke: var(--background-primary); stroke-width: 2; }
+.ett-slice:hover { opacity: 0.85; }
+.ett-donut-total { fill: var(--text-normal); font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ett-donut-legend { display: flex; flex-direction: column; gap: 4px; font-size: var(--font-ui-smaller); color: var(--text-muted); flex: 1; min-width: 160px; }
+.ett-donut-legend .ett-legend-item { display: flex; }
+
+/* One-hue sequential ramp; dark mode uses its own steps (low = close to the surface). */
+.ett-heat-0 { fill: var(--background-modifier-border); background: var(--background-modifier-border); opacity: 0.5; }
+.ett-heat-1 { fill: #cde2fb; background: #cde2fb; }
+.ett-heat-2 { fill: #86b6ef; background: #86b6ef; }
+.ett-heat-3 { fill: #3987e5; background: #3987e5; }
+.ett-heat-4 { fill: #1c5cab; background: #1c5cab; }
+.ett-heat-5 { fill: #104281; background: #104281; }
+.theme-dark .ett-heat-1 { fill: #184f95; background: #184f95; }
+.theme-dark .ett-heat-2 { fill: #256abf; background: #256abf; }
+.theme-dark .ett-heat-3 { fill: #3987e5; background: #3987e5; }
+.theme-dark .ett-heat-4 { fill: #6da7ec; background: #6da7ec; }
+.theme-dark .ett-heat-5 { fill: #b7d3f6; background: #b7d3f6; }
+rect.is-hover { stroke: var(--text-normal); stroke-width: 1.5; }
+.ett-heat-legend { display: flex; align-items: center; gap: 3px; margin-top: 8px; font-size: var(--font-ui-smaller); color: var(--text-muted); }
+.ett-heat-legend > span:first-child { margin-right: 4px; }
+.ett-heat-legend > span:last-child { margin-left: 4px; }
+.ett-heat-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+.ett-cat-cell { min-width: 160px; }
+.ett-cat-chip {
+	display: inline-block; margin: 1px 4px 1px 0; padding: 1px 8px; border-radius: 999px; font-size: var(--font-ui-smaller);
+	border: 1px solid var(--chip-color, var(--background-modifier-border)); color: var(--text-normal); white-space: nowrap;
+}
+.ett-cat-chip.is-uncat { color: var(--text-muted); border-style: dashed; }
+.ett-cat-edit { padding: 2px; vertical-align: middle; }
+.ett-cat-edit svg { width: 14px; height: 14px; }
+
+.ett-parent-list, .ett-picker { display: flex; flex-direction: column; gap: 4px; max-height: 220px; overflow-y: auto; min-width: 220px; }
+.ett-picker { max-height: 50vh; margin: 10px 0; }
+.ett-parent-option { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: var(--font-ui-small); }
+.ett-parent-option .ett-swatch { margin-right: 0; }
+.ett-picker-row { padding-left: calc(var(--ett-depth, 0) * 18px); }
+
+.ett-locked { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 64px 16px; text-align: center; }
+.ett-locked-icon svg { width: 40px; height: 40px; color: var(--text-muted); }
+.ett-error { color: var(--text-error); min-height: 1.4em; margin: 4px 0; }
+
+/* ── Round 3: relationships editor ─────────────────────────────────────── */
+.ett-rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 10px 0 16px; }
+@media (max-width: 600px) { .ett-rel { grid-template-columns: 1fr; } }
+.ett-rel-col { display: flex; flex-direction: column; gap: 6px; padding: 10px; border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m); min-width: 0; }
+.ett-rel-title { font-weight: var(--font-semibold); font-size: var(--font-ui-small); }
+.ett-rel .ett-parent-list { min-width: 0; max-height: 180px; }
+.ett-rel-new { display: flex; gap: 6px; }
+.ett-rel-new input { flex: 1; min-width: 0; }
+.ett-parent-option.is-disabled { opacity: 0.45; cursor: not-allowed; }
+.ett-new-tag { font-size: var(--font-ui-smaller); color: var(--text-accent); margin-left: 4px; }
+
+/* ── Round 4: tasks, signals, recovery key ─────────────────────────────── */
+.ett-task-icon { display: inline-flex; vertical-align: middle; margin-left: 4px; color: var(--text-accent); }
+.ett-task-icon svg { width: 14px; height: 14px; }
+.ett-cat-chip .ett-task-icon svg { width: 12px; height: 12px; }
+.ett-card-title .ett-task-icon { margin: 0 6px 0 0; }
+
+.ett-badge {
+	display: inline-flex; align-items: center; gap: 5px; margin: 1px 4px 1px 0; padding: 1px 8px;
+	border-radius: 999px; font-size: var(--font-ui-smaller); white-space: nowrap;
+	background: var(--background-secondary); color: var(--text-normal); border: 1px solid var(--background-modifier-border);
+}
+.ett-badge-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.ett-badge.is-open .ett-badge-dot { background: #ec835a; }
+.ett-badge.is-waiting .ett-badge-dot { background: #fab219; }
+.ett-badge.is-done .ett-badge-dot { background: #0ca30c; }
+.ett-badge-icon { display: inline-flex; color: var(--text-muted); }
+.ett-badge-icon svg { width: 12px; height: 12px; }
+.ett-signal-cell { min-width: 120px; }
+
+.ett-task-table td { vertical-align: top; }
+.ett-task-table tr.is-selected td { background: var(--background-modifier-hover); }
+.ett-task-name { cursor: pointer; font-weight: var(--font-medium); white-space: nowrap; }
+.ett-task-name:hover span:last-child { text-decoration: underline; }
+.ett-dots { display: inline-flex; gap: 3px; vertical-align: middle; }
+.ett-dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--text-faint); }
+.ett-dot.is-reached { background: var(--text-accent); border-color: var(--text-accent); }
+.ett-progress { white-space: nowrap; }
+td.is-overdue .ett-due { border-color: var(--text-error); color: var(--text-error); }
+.ett-task-section { margin: 0 0 8px 12px; padding-left: 12px; border-left: 2px solid var(--background-modifier-border); }
+
+.ett-recovery-key {
+	font-family: var(--font-monospace); font-size: 1.25em; letter-spacing: 0.04em; text-align: center;
+	padding: 14px; margin: 8px 0; border-radius: var(--radius-m); background: var(--background-secondary);
+	user-select: all; word-break: break-all;
+}
+.ett-recovery-input { font-family: var(--font-monospace); width: 100%; min-width: 280px; }
+.ett-confirm { margin: 10px 0; }
+.ett-link { display: inline-block; margin: 6px 0; font-size: var(--font-ui-small); }
+.ett-warning-text { color: var(--text-warning); }

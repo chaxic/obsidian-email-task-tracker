@@ -1,0 +1,8 @@
+#!/bin/sh
+# Refuse to commit email files or tracker data. Synthetic fixtures are the only exception.
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -iE '\.(eml|msg|csv)$|(^|/)(records[^/]*\.json[^/]*|data\.json)$' | grep -v '^tests/fixtures/synthetic/')
+if [ -n "$bad" ]; then
+	echo "pre-commit: refusing to commit email or tracker data files:"
+	echo "$bad" | sed 's/^/  /'
+	exit 1
+fi

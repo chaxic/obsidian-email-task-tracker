@@ -1,0 +1,26 @@
+From: Finance <billing@vendor.example.com>
+To: user@example.com
+Subject: =?UTF-8?B?SW52b2ljZSBkdWUg4oCTIE5vdmVtYmVy?=
+Date: Wed, 04 Nov 2026 08:00:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY1"
+
+--BOUNDARY1
+Content-Type: multipart/alternative; boundary="BOUNDARY2"
+
+--BOUNDARY2
+Content-Type: text/plain; charset=utf-8
+
+Your invoice for November is attached. Payment terms are thirty days.
+--BOUNDARY2
+Content-Type: text/html; charset=utf-8
+
+<p>Your invoice for November is attached. Payment terms are thirty days.</p>
+--BOUNDARY2--
+--BOUNDARY1
+Content-Type: application/pdf; name="invoice.pdf"
+Content-Disposition: attachment; filename="invoice.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKJSBzeW50aGV0aWMgdGVzdCBmaWxlCg==
+--BOUNDARY1--

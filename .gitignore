@@ -1,0 +1,11 @@
+node_modules/
+main.js
+*.map
+
+# Never commit email content or tracker data.
+*.eml
+*.msg
+!tests/fixtures/synthetic/*.eml
+records*.json*
+data.json
+*.csv

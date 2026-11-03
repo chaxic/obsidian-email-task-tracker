@@ -1,0 +1,9 @@
+{
+  "id": "email-task-tracker",
+  "name": "Email Task Tracker",
+  "version": "0.3.1",
+  "minAppVersion": "1.5.0",
+  "description": "Drop emails in to sort them into categories and track activity. Stores references only, never email bodies or attachments.",
+  "author": "chaxic",
+  "isDesktopOnly": true
+}

@@ -1,0 +1,12 @@
+From: News Team <news@marketing.example.org>
+To: user@example.com
+Subject: Quarterly product update
+Date: Tue, 03 Nov 2026 14:00:00 +0000
+Message-ID: <synthetic-0002@marketing.example.org>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<html><head><style>.x{color:red}</style><script>alert(1)</script></head><body>
+<p>Our <b>quarterly</b> roadmap &amp; release notes are here.</p>
+<img src="https://tracker.example.net/pixel.gif?u=123" width="1" height="1">
+<p>Webinar registration opens soon.</p></body></html>
