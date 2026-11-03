@@ -24,7 +24,7 @@
     "eslint": "9.39.5",
     "eslint-plugin-obsidianmd": "0.4.2",
     "obsidian": "1.14.4",
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.72.1",
     "vitest": "5.1.0"
   }
