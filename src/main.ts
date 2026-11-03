@@ -186,7 +186,7 @@ export default class EmailTrackerPlugin extends Plugin {
 		const raw: unknown = await this.loadData();
 		this.settings = normalizeSettings(raw);
 		const categories = isObject(raw) ? raw.categories : undefined;
-		return Array.isArray(categories) ? categories : [];
+		return Array.isArray(categories) ? (categories as unknown[]) : [];
 	}
 
 	async saveSettings(): Promise<void> {
@@ -241,7 +241,7 @@ export default class EmailTrackerPlugin extends Plugin {
 					await this.store.unlock(pass);
 					unlocked();
 					if (this.store.upgradedWithoutRecovery) {
-						new Notice("Your encrypted tracker was upgraded. Create a recovery key in Settings → Encryption so a forgotten passphrase isn't fatal.", 12000);
+						new Notice("Your encrypted tracker was upgraded. Create a recovery key in the encryption settings so a forgotten passphrase isn't fatal.", 12000);
 					}
 				},
 				() => resolve(false),
@@ -260,7 +260,7 @@ export default class EmailTrackerPlugin extends Plugin {
 				await this.store.changePassphrase(pass);
 				new Notice("New passphrase saved. Your recovery key still works.");
 			},
-			() => new Notice("Passphrase unchanged. You can set a new one in Settings → Encryption."),
+			() => new Notice("Passphrase unchanged. You can set a new one in the encryption settings."),
 			{ submitLabel: "Save new passphrase", intro: "You unlocked with your recovery key. Choose a new passphrase for next time." },
 		).open();
 	}
@@ -272,7 +272,7 @@ export default class EmailTrackerPlugin extends Plugin {
 				new Notice("Email tracker locked.");
 				return true;
 			}
-			new Notice("Couldn't lock the email tracker: encryption isn't set up. Check Settings → Encryption.");
+			new Notice("Couldn't lock the email tracker: encryption isn't set up. Check the encryption settings.");
 		} catch {
 			new Notice("Couldn't lock the email tracker: saving the encrypted file failed. It is still unlocked.");
 		}
@@ -306,8 +306,7 @@ export default class EmailTrackerPlugin extends Plugin {
 	}
 
 	pickFiles(): void {
-		const input = document.createElement("input");
-		input.type = "file";
+		const input = createEl("input", { type: "file" });
 		input.multiple = true;
 		input.accept = ".eml,.msg";
 		input.addEventListener("change", () => {
@@ -390,7 +389,7 @@ export default class EmailTrackerPlugin extends Plugin {
 			});
 			this.watcher.on("error", () => this.stopDropFolderWatch());
 		} catch {
-			new Notice("Email Task Tracker could not watch the drop folder. Check that it exists.");
+			new Notice("Couldn't watch the drop folder. Check that it exists.");
 			return;
 		}
 		void this.scanDropFolder(true);
@@ -406,7 +405,7 @@ export default class EmailTrackerPlugin extends Plugin {
 	async scanDropFolder(quietIfEmpty = false): Promise<void> {
 		const dir = this.settings.dropFolder.trim();
 		if (!dir) {
-			if (!quietIfEmpty) new Notice("Set a drop folder in the Email Task Tracker settings first.");
+			if (!quietIfEmpty) new Notice("Set a drop folder in the plugin settings first.");
 			return;
 		}
 		const problem = this.validateDropFolder(dir);
@@ -435,7 +434,7 @@ export default class EmailTrackerPlugin extends Plugin {
 				// Check the size first, so a huge file can't stall Obsidian while it loads.
 				if ((await stat(path)).size > MAX_EMAIL_BYTES) throw new RangeError("File too large");
 				const buf = await readFile(path);
-				return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer;
+				return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 			},
 		}));
 		const outcomes = await this.importItems(items);

@@ -1,6 +1,6 @@
 {
   "name": "obsidian-email-task-tracker",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Obsidian plugin: drop emails in to sort them into categories and track activity. Stores references only, never email bodies or attachments.",
   "main": "main.js",
@@ -8,7 +8,8 @@
     "dev": "node esbuild.config.mjs",
     "build": "tsc --noEmit && node esbuild.config.mjs production && node scripts/check-no-network.mjs",
     "test": "vitest run",
-    "deploy": "npm run build && node scripts/deploy.mjs"
+    "deploy": "npm run build && node scripts/deploy.mjs",
+    "lint": "eslint src"
   },
   "license": "MIT",
   "dependencies": {
@@ -16,10 +17,15 @@
     "postal-mime": "4.2.0"
   },
   "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@eslint/json": "0.14.0",
     "@types/node": "24.19.2",
     "esbuild": "0.28.2",
+    "eslint": "9.39.5",
+    "eslint-plugin-obsidianmd": "0.4.2",
     "obsidian": "1.14.4",
     "typescript": "5.9.3",
+    "typescript-eslint": "8.72.1",
     "vitest": "5.1.0"
   }
 }

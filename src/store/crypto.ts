@@ -65,8 +65,9 @@ export class UnsupportedVersionError extends Error {
 	}
 }
 
-const subtle = () => globalThis.crypto.subtle;
-const randomBytes = (n: number) => globalThis.crypto.getRandomValues(new Uint8Array(n));
+// The global Web Crypto API (the same object in Obsidian and in Node, used by the tests).
+const subtle = () => crypto.subtle;
+const randomBytes = (n: number) => crypto.getRandomValues(new Uint8Array(n));
 
 export function newKdfParams(iterations = KDF_ITERATIONS): KdfParams {
 	return { name: "PBKDF2-SHA256", iterations, salt: toBase64(randomBytes(16)) };
@@ -90,7 +91,7 @@ async function pbkdf2(secret: string, kdf: KdfParams, algorithm: AesKeyGenParams
  * when you change your passphrase or recovery key; it's never written unwrapped.
  */
 export function generateDataKey(): Promise<CryptoKey> {
-	return subtle().generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]) as Promise<CryptoKey>;
+	return subtle().generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
 }
 
 export async function makeSlot(type: SlotType, secret: string, dataKey: CryptoKey): Promise<KeySlot> {

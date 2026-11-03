@@ -125,7 +125,7 @@ export class DashboardView extends ItemView {
 
 	/** Wait on a save started from the dashboard; a failed write must not go unnoticed. */
 	private persist(saving: Promise<void>): void {
-		saving.catch(() => new Notice("Email Task Tracker could not save your change. Try again."));
+		saving.catch(() => new Notice("Couldn't save your change. Try again."));
 	}
 
 	// ── Render ──────────────────────────────────────────────────────────────
@@ -352,7 +352,7 @@ export class DashboardView extends ItemView {
 		const panels = this.plugin.settings.dashboardPanels;
 		if (!panels.length) {
 			const empty = el.createDiv({ cls: "ett-card ett-empty" });
-			empty.setText("No charts. Use “Add chart” to add one.");
+			empty.setText("No charts yet. Use the add chart button above to add one.");
 			return;
 		}
 		// Charts measure their container, so lay out the cards before drawing.

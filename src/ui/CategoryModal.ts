@@ -145,7 +145,7 @@ export class CategoryModal extends Modal {
 
 		new Setting(el).setName("Name").addText((t) =>
 			t
-				.setPlaceholder("e.g. Invoices")
+				.setPlaceholder("Invoices")
 				.setValue(d.name)
 				.onChange((v) => (d.name = v.trim())),
 		);

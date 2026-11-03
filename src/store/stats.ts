@@ -78,7 +78,7 @@ export function countByBucket(
 		if (i === undefined) continue;
 		for (const s of seriesOf(r)) {
 			let arr = out.get(s);
-			if (!arr) out.set(s, (arr = new Array(buckets.length).fill(0)));
+			if (!arr) out.set(s, (arr = new Array<number>(buckets.length).fill(0)));
 			arr[i]++;
 		}
 	}
@@ -98,7 +98,7 @@ export function hasOverlap(records: EmailRecord[], keysOf: (r: EmailRecord) => s
 
 /** 7 rows (Monday first) × 24 hours, local time. */
 export function countByWeekdayHour(records: EmailRecord[]): number[][] {
-	const grid = Array.from({ length: 7 }, () => new Array(24).fill(0));
+	const grid = Array.from({ length: 7 }, () => new Array<number>(24).fill(0));
 	for (const r of records) {
 		const d = new Date(r.date);
 		grid[(d.getDay() + 6) % 7][d.getHours()]++;

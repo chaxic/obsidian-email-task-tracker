@@ -2,6 +2,13 @@
 
 This project is in development. 0.x releases may include breaking changes to features, settings or the stored record format. Export your records to CSV before updating.
 
+## 0.3.2 — 2026-11-04
+
+- Requires Obsidian 1.7.2 or later. 0.3.1 claimed 1.5.0, but it already relied on an API added in 1.7.2.
+- Passes Obsidian's plugin lint rules (`eslint-plugin-obsidianmd`) with no errors, ahead of submission to the community directory. Run `npm run lint`.
+- Tightened types in the chart statistics and settings loading, and removed unneeded type assertions.
+- UI text follows Obsidian's sentence-case style.
+
 ## 0.3.1 — 2026-11-04
 
 First public release.

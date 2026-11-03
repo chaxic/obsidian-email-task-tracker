@@ -24,13 +24,16 @@ export class RecoveryKeyModal extends Modal {
 		const confirm = contentEl.createEl("label", { cls: "ett-parent-option ett-confirm" });
 		const box = confirm.createEl("input", { type: "checkbox" });
 		confirm.createSpan({ text: "I've stored my recovery key safely" });
-		box.addEventListener("change", () => done.setDisabled(!box.checked));
+		box.addEventListener("change", () => {
+			done.setDisabled(!box.checked);
+		});
 
 		new Setting(contentEl)
 			.addButton((b) =>
-				b.setButtonText("Copy").onClick(async () => {
-					await navigator.clipboard.writeText(this.recoveryKey);
-					new Notice("Recovery key copied. Paste it into your password manager, then clear your clipboard.");
+				b.setButtonText("Copy").onClick(() => {
+					void navigator.clipboard
+						.writeText(this.recoveryKey)
+						.then(() => new Notice("Recovery key copied. Paste it into your password manager, then clear your clipboard."));
 				}),
 			)
 			.addButton((b) => {

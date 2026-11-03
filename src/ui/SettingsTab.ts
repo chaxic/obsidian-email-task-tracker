@@ -133,7 +133,7 @@ export class TrackerSettingTab extends PluginSettingTab {
 
 		new Setting(el)
 			.setName("Keywords kept per email")
-			.setDesc("Single words (no numbers) used to re-run filters on past emails. 0 keeps none.")
+			.setDesc("Single words (no numbers) used to re-run filters on past emails. Set to zero to keep none.")
 			.addSlider((sl) =>
 				sl
 					.setLimits(0, 50, 1)
@@ -147,7 +147,7 @@ export class TrackerSettingTab extends PluginSettingTab {
 
 		new Setting(el)
 			.setName("Gmail search links")
-			.setDesc("Adds a button that opens Gmail in your browser, searching for the email by its Message-ID. Only opens when you click it.")
+			.setDesc("Adds a button that opens Gmail in your browser, searching for the email by its message ID. Only opens when you click it.")
 			.addToggle((t) =>
 				t.setValue(s.gmailLinks).onChange(async (v) => {
 					s.gmailLinks = v;
@@ -321,7 +321,7 @@ export class TrackerSettingTab extends PluginSettingTab {
 			.setDesc("Optional. Save or drag emails into this folder (outside the vault) and they are imported automatically.")
 			.addText((t) =>
 				t
-					.setPlaceholder("C:\\Users\\you\\EmailDrop")
+					.setPlaceholder("Full path to a folder outside the vault")
 					.setValue(s.dropFolder)
 					.onChange((v) => (s.dropFolder = v.trim())),
 			)
